@@ -1,0 +1,3 @@
+[submodule "my_plugins/dracula-theme"]
+	path = my_plugins/dracula-theme
+	url = git@github.com:dracula/vim.git

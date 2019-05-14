@@ -43,7 +43,8 @@ set autoread
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
-
+" 显示路径
+set laststatus=2
 " Fast saving
 nmap <leader>w :w!<cr>
 

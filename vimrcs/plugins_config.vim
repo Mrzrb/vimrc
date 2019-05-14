@@ -28,7 +28,7 @@ map <leader>o :BufExplorer<cr>
 " => MRU plugin
 """"""""""""""""""""""""""""""
 let MRU_Max_Entries = 400
-map <leader>f :MRU<CR>
+"map <leader>f :MRU<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -45,12 +45,18 @@ nmap <c-n> <Plug>yankstack_substitute_newer_paste
 """"""""""""""""""""""""""""""
 let g:ctrlp_working_path_mode = 0
 
-let g:ctrlp_map = '<c-f>'
-map <leader>j :CtrlP<cr>
-map <c-b> :CtrlPBuffer<cr>
+"let g:ctrlp_map = '<c-l>'
+"map <leader>j :CtrlP<cr>
+"map <c-b> :CtrlPBuffer<cr>
 
-let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+"let g:ctrlp_max_height = 20
+"let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+
+
+""""""""""""""""""""""""""""""
+" => LeaderF
+""""""""""""""""""""""""""""""
+let g:Lf_ShortcutF = '<c-p>'
 
 
 """"""""""""""""""""""""""""""
@@ -166,11 +172,19 @@ nmap <silent> <leader>a <Plug>(ale_next_wrap)
 
 " Disabling highlighting
 let g:ale_set_highlights = 0
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 
 " Only run linting when saving the file
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
+let g:ale_sign_error = "\ue009\ue009"
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! SpellBad gui=undercurl guisp=red
+hi! SpellCap gui=undercurl guisp=blue
+hi! SpellRare gui=undercurl guisp=magenta
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Git gutter (Git diff)
@@ -209,6 +223,10 @@ endif
 """""""""""""""""""""""""""""""
 " => leaderF
 """""""""""""""""""""""""""""""
+
+map <leader>f :LeaderfFile<CR>
+map <leader>F :LeaderfFunction<CR>
+map <leader>m :LeaderfMru<CR>
 let g:Lf_ShortcutF = '<c-p>'
 let g:Lf_ShortcutB = '<m-n>'
 noremap <c-n> :LeaderfMru<cr>
@@ -225,3 +243,38 @@ let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+
+
+"""""""""""""""""""""""""""""""
+" => AsyncRun
+"""""""""""""""""""""""""""""""
+let g:asyncrun_open = 6
+nnoremap <silent> <leader>c :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+noremap <silent> <leader>r :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+
+
+"""""""""""""""""""""""""""""""
+" => echodoc
+"""""""""""""""""""""""""""""""
+set noshowmode
+set cmdheight=2
+
+"""""""""""""""""""""""""""""""
+" => YoucompleteMe
+"""""""""""""""""""""""""""""""
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+
+noremap <c-z> <NOP>
+
+let g:ycm_semantic_triggers =  {
+           \ 'c,cpp<Plug>PeepOpenython,java,go,erlang<Plug>PeepOpenerl': ['re!\w{2}'],
+           \ 'cs,lua,javascript': ['re!\w{2}'],
+           \ }
+

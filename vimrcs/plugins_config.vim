@@ -83,7 +83,7 @@ set grepprg=/bin/grep\ -nH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let g:NERDTreeWinSize=35
@@ -248,7 +248,7 @@ let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 """""""""""""""""""""""""""""""
 " => AsyncRun
 """""""""""""""""""""""""""""""
-let g:asyncrun_open = 6
+let g:asyncrun_open = 0
 nnoremap <silent> <leader>c :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 noremap <silent> <leader>r :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 
@@ -257,7 +257,6 @@ noremap <silent> <leader>r :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(
 " => echodoc
 """""""""""""""""""""""""""""""
 set noshowmode
-set cmdheight=2
 
 """""""""""""""""""""""""""""""
 " => YoucompleteMe
